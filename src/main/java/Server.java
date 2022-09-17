@@ -12,10 +12,13 @@ import java.util.List;
 import java.util.concurrent.Executors;
 
 public class Server {
-    public static final int PORT = 9999;
+
+    public Server(){}
+
+    public static final int PORT = 9995;
 
 
-    public static void start() {
+    void start() {
         final var threadPool = Executors.newFixedThreadPool(64);
         try (final var serversocket = new ServerSocket(PORT)) {
 
@@ -39,12 +42,12 @@ class ThreadServer implements Runnable {
     public ThreadServer(Socket client) {
         ThreadServer.socket = client;
     }
-
+    public static final int PORT = 9994;
     @Override
     public void run() {
         final var validPaths = List.of("/index.html", "/spring.svg", "/spring.png", "/resources.html", "/styles.css", "/app.js", "/links.html", "/forms.html", "/classic.html", "/events.html", "/events.js");
 
-        try (final var serverSocket = new ServerSocket(9999)) {
+        try (final var serverSocket = new ServerSocket(PORT)) {
             while (true) {
                 try (
                         final var socket = serverSocket.accept();
