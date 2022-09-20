@@ -15,15 +15,15 @@ public class Server {
 
     public Server(){}
 
-    public static final int PORT = 9994;
+    public static final int PORT = 9999;
 
 
     void start() {
         final var threadPool = Executors.newFixedThreadPool(64);
-        try (final var serversocket = new ServerSocket(PORT)) {
+        try (final var serverSocket = new ServerSocket(PORT)) {
 
             while (true) {
-                final var socket = serversocket.accept();
+                final var socket = serverSocket.accept();
                 threadPool.execute(new ThreadServer(socket));
             }
 
